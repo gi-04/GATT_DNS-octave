@@ -1,0 +1,24 @@
+18/09/2024
+generateMesh: dbase está dando problema (linha 16). especificamente, algo deu errado com a chamada recursiva de generateMesh logo acima
+generateMesh: alguma divergência com a função interp1 (linha 152)
+generateMesh: variável eta é nan
+generateMesh: novamente parece que o problema é com o interp1
+generateMesh: no octave, o interp1 gera nans. no matlab, alguns desses nans são na verdade zeros
+  >> solução: quando interp1 estiver configurada como pchip, substituir pela função pchip
+
+19/09/2024
+findWallsForBoundaries: erro acusando que o input DIM em diff deve ser uma dimensão válida
+  >> solução: se o ndims do array não for 3, a função no octave retorna um erro ao invés do array vazio como no matlab. a solução foi incluir um condicional em cada instância dessa função pra acomodar essa ocorrência.
+
+19/09/2024
+findWallsForBoundaries: na função unique, o retorno do terceiro output ainda não está implementado no octave.
+  >> solução: foi escrita uma função que fornece esse valor
+
+19/09/2024
+checkPreviousRun: a função matfile não é suportada no octave.
+  >> solução: usar a função load e carregar apenas os valores de interesse (nx, ny e nz)
+  NOTA: PRECISO CONFIRMAR SE ESTÁ FUNCIONANDO DIREITO
+
+[ainda a fazer]
+-buscar mais instâncias da função diff e aplicar correções pro erro do dim
+-buscar mais instâncias da função unique que se encaixem no problema encontrado
